@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<form class="form-inline" method="post" th:object="${companyForm}">
+  <div class="form-group">
+    <label for="InputName">회사명</label>
+    <input
+            type="text"
+            class="form-control"
+            id="InputName"
+            placeholder="Jane Doe"
+            th:field="*{companyName}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="InputBusinessNumber">사업자번호</label>
+    <input
+            type="text"
+            class="form-control"
+            id="InputBusinessNumber"
+            placeholder="000-000-000000"
+            th:field="*{businessNumber}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="InputTelNumber">전화번호</label>
+    <input
+            type="text"
+            class="form-control"
+            id="InputTelNumber"
+            placeholder="telnumber"
+            th:field="*{telNumber}"
+    />
+  </div>
+  <div class="form-group">
+    <label for="InputEmail">Email</label>
+    <input
+            type="email"
+            class="form-control"
+            id="InputEmail"
+            placeholder="exam123@example.com"
+            th:field="*{email}"
+    />
+  </div>
+  <button type="submit" class="btn btn-default">기업 추가</button>
+</form>
+</body>
+</html>

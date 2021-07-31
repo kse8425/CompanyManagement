@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/header :: header">
+  <body>
+  <div class="bs-example" data-example-id="simple-table">
+    <table class="table" th:object="${company}">
+      <caption>
+        Optional table caption.
+      </caption>
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>회사명</th>
+        <th>사업자 번호</th>
+        <th>전화번호</th>
+        <th>E-mail</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="company : ${companyList}">
+        <th scope="row" th:text="${company.id}">1</th>
+        <td th:text="${company.companyName}">Mark</td>
+        <td th:text="${company.businessNumber}">Otto</td>
+        <td th:text="${company.telNumber}">@mdo</td>
+        <td th:text="${company.email}">Mark@gmail.com</td>
+      </tr>
+<!--      <tr>-->
+<!--        <th scope="row">2</th>-->
+<!--        <td>Jacob</td>-->
+<!--        <td>Thornton</td>-->
+<!--        <td>@fat</td>-->
+<!--        <td>Jacob@naver.com</td>-->
+<!--      </tr>-->
+<!--      <tr>-->
+<!--        <th scope="row">3</th>-->
+<!--        <td>Larry</td>-->
+<!--        <td>the Bird</td>-->
+<!--        <td>@twitter</td>-->
+<!--        <td>Larry@hanmail.com</td>-->
+<!--      </tr>-->
+      </tbody>
+    </table>
+  </div>
+  <!-- /example -->
+  </body>
+</html>
