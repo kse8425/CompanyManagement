@@ -1,7 +1,9 @@
-package yaho;
+package yaho.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import yaho.domain.Company;
+import yaho.repasitory.CompanyRepository;
 
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class CompanyService {
         companyRepository.save(company);
     }
 
-    public List<Company> companyList() {
+    public List<Company> list() {
         return companyRepository.findAll();
     }
 

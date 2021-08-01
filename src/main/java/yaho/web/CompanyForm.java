@@ -1,4 +1,4 @@
-package yaho;
+package yaho.web;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,7 @@
-package yaho;
+package yaho.repasitory;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import yaho.domain.Company;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,17 +16,17 @@ public class CompanyRepository {
 
     Map<Integer, Company> companyList = new HashMap<>();
 
-    void save(Company company) {
+    public void save(Company company) {
         id++;
         company.setId(id);
         companyList.put(id, company);
     }
 
-    Company findByID(int id) {
+    public Company findByID(int id) {
         return companyList.get(id);
     }
 
-    List<Company> findAll() {
+    public List<Company> findAll() {
         return new ArrayList<>(companyList.values());
     }
 }
