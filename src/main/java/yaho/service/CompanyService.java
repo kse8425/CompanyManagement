@@ -12,7 +12,11 @@ import java.util.List;
 public class CompanyService {
     private final CompanyRepository companyRepository;
 
-    public void signUp(Company company) {
+    public Company findByName(String companyName) {
+        return companyRepository.findByName(companyName);
+    }
+
+    public void add(Company company) {
         companyRepository.save(company);
     }
 

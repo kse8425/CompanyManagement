@@ -3,7 +3,7 @@
   <head th:replace="fragments/header :: header">
   <body>
   <div class="bs-example" data-example-id="simple-table">
-    <table class="table" th:object="${company}">
+    <table class="table">
       <thead>
       <tr>
         <th>#</th>
@@ -16,7 +16,7 @@
       <tbody>
       <tr th:each="company : ${companyList}">
         <th scope="row" th:text="${company.id}">1</th>
-        <td th:text="${company.companyName}">Mark</td>
+        <td th:text="${company.name}">Mark</td>
         <td th:text="${company.businessNumber}">Otto</td>
         <td th:text="${company.telNumber}">@mdo</td>
         <td th:text="${company.email}">Mark@gmail.com</td>

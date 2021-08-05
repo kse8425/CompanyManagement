@@ -13,11 +13,15 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public void register(Product product) {
+    public void add(Product product) {
         productRepository.save(product);
     }
 
-    public List<Product>List(){
+    public List<Product>list(){
         return productRepository.findAll();
+    }
+
+    public Product findByName(String productName) {
+        return productRepository.findByName(productName);
     }
 }

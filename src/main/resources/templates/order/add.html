@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header"/>
+<body>
+<form class="form-inline" method="post" th:object="${orderForm}">
+    <div class="form-group">
+        <label for=>회사명</label>
+        <input type="text" class="form-control" placeholder="" th:field="*{companyName}" />
+    </div>
+    <div class="form-group">
+        <label for=>제 품</label>
+        <input type="text" class="form-control" placeholder="" th:field="*{productName}" />
+    </div>
+    <div class="form-group">
+        <label>수 량</label>
+        <input type="text" class="form-control" placeholder="" th:field="*{quantity}" />
+    </div>
+    <button type="submit" class="btn btn-default">주문 추가</button>
+</form>
+</body>
+</html>

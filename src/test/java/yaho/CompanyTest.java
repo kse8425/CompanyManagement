@@ -25,8 +25,8 @@ class CompanyTest {
         Company company1 = new Company("tech roll", "444-000-555555");
         Company company2 = new Company("sec roll", "444-111-555555");
         Company company3 = new Company("trd roll", "444-111-555555");
-        companyService.signUp(company1);
-        companyService.signUp(company2);
+        companyService.add(company1);
+        companyService.add(company2);
 
         //실행
         List<Company> companyList = companyService.list();
@@ -34,8 +34,8 @@ class CompanyTest {
         Company findCompany2 = companyRepository.findByID(2);
 
         //검사
-        assertEquals("tech roll",findCompany1.getCompanyName());
-        assertEquals("sec roll",findCompany2.getCompanyName());
+        assertEquals("tech roll",findCompany1.getName());
+        assertEquals("sec roll",findCompany2.getName());
         assertTrue(companyList.contains(company1));
         assertTrue(companyList.contains(company2));
         assertFalse(companyList.contains(company3));

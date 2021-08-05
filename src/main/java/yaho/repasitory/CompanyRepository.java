@@ -29,4 +29,8 @@ public class CompanyRepository {
     public List<Company> findAll() {
         return new ArrayList<>(companyList.values());
     }
+
+    public Company findByName(String companyName) {
+        return findAll().stream().filter(company -> company.getName().equals(companyName)).findFirst().get();
+    }
 }

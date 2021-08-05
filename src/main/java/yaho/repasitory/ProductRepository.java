@@ -13,12 +13,15 @@ public class ProductRepository {
     private Map<Integer, Product> ProductList = new HashMap<>();
     int id = 0;
     public void save(Product product) {
-        id++;
-        product.setId(id);
+        product.setId(++id);
         ProductList.put(id, product);
     }
 
     public List<Product> findAll() {
         return new ArrayList<>(ProductList.values());
+    }
+
+    public Product findByName(String productName) {
+        return findAll().stream().filter(product -> product.getName().equals(productName)).findFirst().get();
     }
 }
