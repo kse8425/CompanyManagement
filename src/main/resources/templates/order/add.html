@@ -1,21 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="header"/>
-<body>
-<form class="form-inline" method="post" th:object="${orderForm}">
-    <div class="form-group">
-        <label for=>회사명</label>
-        <input type="text" class="form-control" placeholder="" th:field="*{companyName}" />
-    </div>
-    <div class="form-group">
-        <label for=>제 품</label>
-        <input type="text" class="form-control" placeholder="" th:field="*{productName}" />
-    </div>
-    <div class="form-group">
+  <head th:replace="fragments/header">
+  </head>
+  <body>
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <form class="form-inline" method="post" th:object="${orderForm}">
+      <div class="form-group">
+        <label>회사명</label>
+        <input
+          id="company-input"
+          type="text"
+          class="form-control"
+          placeholder=""
+          th:field="*{companyName}"
+        />
+      </div>
+      <div class="form-group">
+        <label>제 품</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          th:field="*{productName}"
+        />
+      </div>
+      <div class="form-group">
         <label>수 량</label>
-        <input type="text" class="form-control" placeholder="" th:field="*{quantity}" />
-    </div>
-    <button type="submit" class="btn btn-default">주문 추가</button>
-</form>
-</body>
+        <input
+          type="text"
+          class="form-control"
+          placeholder=""
+          th:field="*{quantity}"
+        />
+      </div>
+      <button type="submit" class="btn btn-default">주문 추가</button>
+    </form>
+    <div id="suggest_box" th:text="${suggestedList}"></div>
+    <div th:replace="order/list :: order-list"></div>
+
+    <script>
+      $(function () {
+        $("#company-input").keyup(function () {
+          $.ajax({
+            url: "/order/add/suggest",
+            method: "post",
+            data: { companyName: $(this).val() },
+          }).done(function (result) {
+            $("#suggest_box").replaceWith(result);
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

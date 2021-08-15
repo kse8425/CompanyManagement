@@ -1,4 +1,4 @@
-package yaho.repasitory;
+package yaho.repository;
 
 import org.springframework.stereotype.Repository;
 import yaho.domain.Order;
@@ -8,16 +8,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
-public class OrderRepository {
-    private Map<Integer, Order> orderList = new HashMap<>();
-    private int id=0;
 
-    public void save(Order order) {
+public class OrderRepositoryByMemory implements OrderRepository{
+    private Map<Long, Order> orderList = new HashMap<>();
+    private Long id=0L;
+
+    @Override
+    public Long save(Order order) {
         order.setId(++id);
         orderList.put(id, order);
+        return id;
     }
 
+    @Override
     public List<Order> findAll() {
         return new ArrayList<>(orderList.values());
     }

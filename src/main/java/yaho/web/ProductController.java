@@ -22,7 +22,9 @@ public class ProductController {
 
     @GetMapping("product/register")
     String productRegister(Model model) {
+        List<Product> productList = productService.list();
         model.addAttribute("productForm", new ProductForm());
+        model.addAttribute("productList", productList);
         return "/product/register";
     }
 
@@ -36,7 +38,7 @@ public class ProductController {
 
         productService.add(product);
 
-        return "redirect:/";
+        return "redirect:/product/register";
     }
     @GetMapping("product/list")
     String productList(Model model) {

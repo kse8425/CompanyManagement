@@ -1,11 +1,11 @@
 package yaho;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import yaho.domain.Company;
 import yaho.domain.Order;
 import yaho.domain.Product;
@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
+@Transactional
 class OrderTest {
 
     @Autowired
@@ -35,8 +36,8 @@ class OrderTest {
         companyService.add(company1);
         companyService.add(company2);
 
-        Product product1 = new Product("SR057", 40000);
-        Product product2 = new Product("SR050", 40000);
+        Product product1 = new Product("SR005", 40000);
+        Product product2 = new Product("SR006", 40000);
         productService.add(product1);
         productService.add(product2);
     }
@@ -51,7 +52,7 @@ class OrderTest {
         orderService.add(order1);
         orderService.add(order2);
 
-        List<Order> findOrder = orderService.orderList();
+        List<Order> findOrder = orderService.list();
 
         assertTrue(findOrder.contains(order1));
         assertTrue(findOrder.contains(order2));
@@ -62,13 +63,13 @@ class OrderTest {
     void orderFormTest() {
         OrderForm orderForm = new OrderForm();
         orderForm.setCompanyName("tech roll");
-        orderForm.setProductName("SR057");
+        orderForm.setProductName("SR005");
 
         Company findCom = companyService.findByName(orderForm.getCompanyName());
         Product findPro = productService.findByName(orderForm.getProductName());
         Order order = new Order(findCom,findPro);
 
-        assertEquals(findCom,order.getCompany());
+        assertEquals(findCom.getName(),order.getCompany().getName());
 
     }
 }

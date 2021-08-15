@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head th:replace="fragments/header :: header">
   <body>
-  <div class="bs-example" data-example-id="simple-table">
+  <div th:replace="fragments/navbar :: navbar"></div>
+  <div th:fragment="company-list" class="bs-example" data-example-id="simple-table">
     <table class="table">
       <thead>
       <tr>
@@ -21,23 +22,8 @@
         <td th:text="${company.telNumber}">@mdo</td>
         <td th:text="${company.email}">Mark@gmail.com</td>
       </tr>
-<!--      <tr>-->
-<!--        <th scope="row">2</th>-->
-<!--        <td>Jacob</td>-->
-<!--        <td>Thornton</td>-->
-<!--        <td>@fat</td>-->
-<!--        <td>Jacob@naver.com</td>-->
-<!--      </tr>-->
-<!--      <tr>-->
-<!--        <th scope="row">3</th>-->
-<!--        <td>Larry</td>-->
-<!--        <td>the Bird</td>-->
-<!--        <td>@twitter</td>-->
-<!--        <td>Larry@hanmail.com</td>-->
-<!--      </tr>-->
       </tbody>
     </table>
   </div>
-  <!-- /example -->
   </body>
 </html>

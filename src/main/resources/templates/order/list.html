@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header">
 <body>
-<div class="bs-example" data-example-id="simple-table">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div th:fragment="order-list" class="bs-example" data-example-id="simple-table">
     <table class="table">
         <thead>
         <tr>
@@ -17,7 +18,7 @@
         <tbody>
         <tr th:each="order : ${orderList}">
             <th scope="row" th:text="${order.id}"></th>
-            <th>21-08-04</th>
+            <td th:text="${order.date}"></td>
             <td th:text="${order.company.getName()}"></td>
             <td th:text="${order.product.getName()}"></td>
             <td th:text="${order.quantity}"></td>

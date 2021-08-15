@@ -3,13 +3,20 @@ package yaho.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
+
+@Entity
 @Getter @Setter
 public class Company {
-    private int id;
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="company_id")
+    private Long id;
     private String name;
     private String businessNumber;
     private String telNumber;
     private String email;
+//    @OneToOne(mappedBy = "company", fetch = FetchType.LAZY)
+//    private Order order;
 
     public Company() {}
 

@@ -1,4 +1,4 @@
-package yaho.repasitory;
+package yaho.repository;
 
 import org.springframework.stereotype.Repository;
 import yaho.domain.Company;
@@ -8,28 +8,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
-//@RequiredArgsConstructor
-public class CompanyRepository {
 
-    private int id=0;
+//@Repository
+public class CompanyRepositoryByMemory implements CompanyRepository{
 
-    Map<Integer, Company> companyList = new HashMap<>();
+    private Long id=0L;
 
-    public void save(Company company) {
+    Map<Long, Company> companyList = new HashMap<>();
+
+    @Override
+    public Long save(Company company) {
         id++;
         company.setId(id);
         companyList.put(id, company);
+        return company.getId();
     }
 
-    public Company findByID(int id) {
+    @Override
+    public Company findByID(Long id) {
         return companyList.get(id);
     }
 
+    @Override
     public List<Company> findAll() {
         return new ArrayList<>(companyList.values());
     }
 
+    @Override
     public Company findByName(String companyName) {
         return findAll().stream().filter(company -> company.getName().equals(companyName)).findFirst().get();
     }

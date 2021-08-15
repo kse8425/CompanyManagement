@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header"/>
 <body>
+<div th:replace="fragments/navbar :: navbar"></div>
 <form class="form-inline" method="post" th:object="${productForm}">
     <div class="form-group">
         <label>제품명</label>
@@ -25,5 +26,6 @@
     </div>
     <button type="submit" class="btn btn-default">제품 추가</button>
 </form>
+<div th:replace="product/list :: product-list"></div>
 </body>
 </html>

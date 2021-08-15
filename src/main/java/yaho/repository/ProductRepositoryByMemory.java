@@ -1,4 +1,4 @@
-package yaho.repasitory;
+package yaho.repository;
 
 import org.springframework.stereotype.Repository;
 import yaho.domain.Product;
@@ -8,20 +8,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
-public class ProductRepository {
-    private Map<Integer, Product> ProductList = new HashMap<>();
-    int id = 0;
-    public void save(Product product) {
+
+public class ProductRepositoryByMemory implements ProductRepository{
+    private Map<Long, Product> ProductList = new HashMap<>();
+    Long id = 0L;
+
+    @Override
+    public Long save(Product product) {
         product.setId(++id);
         ProductList.put(id, product);
+        return product.getId();
     }
 
-    public List<Product> findAll() {
-        return new ArrayList<>(ProductList.values());
-    }
-
+    @Override
     public Product findByName(String productName) {
         return findAll().stream().filter(product -> product.getName().equals(productName)).findFirst().get();
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return new ArrayList<>(ProductList.values());
     }
 }

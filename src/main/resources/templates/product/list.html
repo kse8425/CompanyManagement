@@ -2,7 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header">
 <body>
-<div class="bs-example" data-example-id="simple-table">
+<div th:replace="fragments/navbar :: navbar"></div>
+<div th:fragment="product-list" class="bs-example" data-example-id="simple-table">
     <table class="table" th:object="${company}">
         <thead>
         <tr>

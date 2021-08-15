@@ -1,7 +1,6 @@
 package yaho.web;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,9 @@ public class OrderController {
 
     @GetMapping("order/add")
     String orderAdd(Model model) {
+        List<Order> orderList = orderService.list();
         model.addAttribute(new OrderForm());
+        model.addAttribute("orderList",orderList);
         return "order/add";
     }
 
@@ -36,12 +37,18 @@ public class OrderController {
         Order order = new Order(company,product);
         order.setQuantity(orderForm.getQuantity());
         orderService.add(order);
-        return "redirect:/";
+        return "redirect:/order/add";
+    }
+
+    @PostMapping("order/add/suggest")
+    String orderSuggest(Model model,OrderForm orderForm) {
+        model.addAttribute("suggestedList",orderForm.getCompanyName());
+        return "order/add :: #suggest_box";
     }
     @GetMapping("order/list")
     String orderList(Model model) {
-        List<Order> orderList = orderService.orderList();
-        model.addAttribute("orderList",orderList);
+        List<Order> orderList = orderService.list();
+        model.addAttribute("orderList", orderList);
         return "order/list";
     }
 }

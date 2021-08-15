@@ -17,7 +17,9 @@ public class CompanyController {
 
     @GetMapping("company/sign-up")
     String signUp(Model model) {
+        List<Company> companyList = companyService.list();
         model.addAttribute("companyForm", new CompanyForm());
+        model.addAttribute("companyList", companyList);
         return "/company/sign-up";
     }
 
@@ -27,7 +29,7 @@ public class CompanyController {
         company.setTelNumber(companyForm.getTelNumber());
         company.setEmail(companyForm.getEmail());
         companyService.add(company);
-        return "redirect:/";
+        return "redirect:/company/sign-up";
     }
 
     @GetMapping("company/list")
