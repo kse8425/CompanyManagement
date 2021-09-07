@@ -19,11 +19,12 @@ class ProductRepositoryByH2Test {
     @Autowired
     ProductRepository productRepository;
     Product product;
+    Long id;
 
     @BeforeEach
     void beforeEach() {
         product = new Product("SR057", 44000);
-        productRepository.save(product);
+        id = productRepository.save(product);
     }
 
     @Test
@@ -32,6 +33,11 @@ class ProductRepositoryByH2Test {
         assertEquals(product.getName(),find.getName());
     }
 
+    @Test
+    void findById(){
+        Product find = productRepository.findById(id);
+        assertEquals(find.getName(),"SR057");
+    }
     @Test
     void findAll() {
         Product product2 = new Product("SR0572", 44002);
@@ -43,6 +49,5 @@ class ProductRepositoryByH2Test {
         assertTrue(productList.stream().anyMatch(prd->prd.getName().equals(product.getName())));
         assertTrue(productList.stream().anyMatch(prd->prd.getName().equals(product2.getName())));
         assertTrue(productList.stream().anyMatch(prd->prd.getName().equals(product3.getName())));
-
     }
 }

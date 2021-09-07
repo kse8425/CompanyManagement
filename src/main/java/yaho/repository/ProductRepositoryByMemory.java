@@ -26,7 +26,22 @@ public class ProductRepositoryByMemory implements ProductRepository{
     }
 
     @Override
+    public Product findById(Long id) {
+        return findAll().stream().filter(product -> product.getId() == id).findFirst().get();
+    }
+
+    @Override
     public List<Product> findAll() {
         return new ArrayList<>(ProductList.values());
+    }
+
+    @Override
+    public List<String> findByMatch(String productName) {
+        return null;
+    }
+
+    @Override
+    public void deleteByID(Long id) {
+
     }
 }

@@ -20,8 +20,8 @@ public class CompanyRepositoryByH2 implements CompanyRepository{
     }
 
     @Override
-    public Company findByID(Long id) {
-        return em.find(Company.class,id);
+    public Company findByID(Long companyId) {
+        return em.find(Company.class,companyId);
     }
 
     @Override
@@ -35,5 +35,18 @@ public class CompanyRepositoryByH2 implements CompanyRepository{
     public List<Company> findAll() {
         return em.createQuery("select c from Company c", Company.class)
                 .getResultList();
+    }
+
+    @Override
+    public List<String> findByMatch(String name) {
+        return em.createQuery("select name from Company c where c.name like :name", String.class)
+                .setParameter("name","%" + name + "%")
+                .getResultList();
+    }
+
+    @Override
+    public void deleteByID(Long id) {
+        Company company = findByID(id);
+        em.remove(company);
     }
 }

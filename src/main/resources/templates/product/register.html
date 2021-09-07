@@ -1,31 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header"/>
+<head th:replace="fragments/head :: head" />
 <body>
-<div th:replace="fragments/navbar :: navbar"></div>
-<form class="form-inline" method="post" th:object="${productForm}">
-    <div class="form-group">
-        <label>제품명</label>
-        <input
-                type="text"
-                class="form-control"
-                id="InputName"
-                placeholder="Jane Doe"
-                th:field="*{Name}"
-        />
+<div th:replace="fragments/header :: header"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="fragments/navbar :: navbar"></div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <form
+                    class="row mb-3 mt-3 align-items-start needs-validation"
+                    method="post"
+                    th:object="${productForm}"
+                    novalidate
+            >
+                <div class="col-2">
+                    <div class="form-floating">
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="InputProductName"
+                                placeholder="-"
+                                th:field="*{Name}"
+                                required
+                        />
+                        <label for="InputProductName">제품명</label>
+                        <div class="invalid-feedback">
+                            제품명을 입력하세요.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-floating">
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="InputProductPrice"
+                                placeholder="-"
+                                th:field="*{price}"
+                        />
+                        <label for="InputProductPrice">가 격</label>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn btn-lg btn-outline-primary">
+                        제품 추가
+                    </button>
+                </div>
+            </form>
+            <div th:replace="product/list :: product-list"></div>
+        </main>
     </div>
-    <div class="form-group">
-        <label>가 격</label>
-        <input
-                type="text"
-                class="form-control"
-                id="InputBusinessNumber"
-                placeholder="000-000-000000"
-                th:field="*{price}"
-        />
-    </div>
-    <button type="submit" class="btn btn-default">제품 추가</button>
-</form>
-<div th:replace="product/list :: product-list"></div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

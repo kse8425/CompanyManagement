@@ -14,6 +14,11 @@ public class OrderRepositoryByMemory implements OrderRepository{
     private Long id=0L;
 
     @Override
+    public Order findByID(Long id) {
+        return null;
+    }
+
+    @Override
     public Long save(Order order) {
         order.setId(++id);
         orderList.put(id, order);
@@ -23,5 +28,10 @@ public class OrderRepositoryByMemory implements OrderRepository{
     @Override
     public List<Order> findAll() {
         return new ArrayList<>(orderList.values());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+
     }
 }

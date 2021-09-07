@@ -23,4 +23,7 @@ public class OrderService {
     public List<Order> list() {
         return orderRepository.findAll();
     }
+
+    @Transactional
+    public void deleteById(Long id){orderRepository.deleteById(id);}
 }

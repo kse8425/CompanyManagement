@@ -27,4 +27,14 @@ public class CompanyService {
     public List<Company> list() {
         return companyRepository.findAll();
     }
+
+    public List<String> findByMatch(String companyName) {
+        if (companyName == "") return null;
+        return companyRepository.findByMatch(companyName);
+    }
+
+    @Transactional
+    public void deleteById(Long id){
+        companyRepository.deleteByID(id);
+    };
 }

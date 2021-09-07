@@ -13,8 +13,6 @@ public class Product {
     private Long id;
     private String name;
     private int price;
-//    @OneToOne(mappedBy = "product", fetch = FetchType.LAZY)
-//    private Order order;
 
     public Product() {}
 

@@ -38,4 +38,14 @@ public class CompanyRepositoryByMemory implements CompanyRepository{
     public Company findByName(String companyName) {
         return findAll().stream().filter(company -> company.getName().equals(companyName)).findFirst().get();
     }
+
+    @Override
+    public List<String> findByMatch(String name) {
+        return null;
+    }
+
+    @Override
+    public void deleteByID(Long id) {
+
+    }
 }

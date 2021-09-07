@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import yaho.domain.Company;
 import yaho.domain.Product;
@@ -46,5 +47,14 @@ public class ProductController {
         model.addAttribute("productList", productList);
 
         return "/product/list";
+    }
+
+    @GetMapping("product/remove/{productId}")
+    String remove (@PathVariable("productId")Long productId,Model model){
+        productService.deleteById(productId);
+        List<Product> productList = productService.list();
+        model.addAttribute("productList", productList);
+        System.out.println("여기는 remove");
+        return "/product/list :: .table";
     }
 }

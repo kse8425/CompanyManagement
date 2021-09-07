@@ -9,5 +9,11 @@ public interface ProductRepository {
 
     public Product findByName(String productName);
 
+    public Product findById(Long id);
+
     public List<Product> findAll();
+
+    List<String> findByMatch(String productName);
+
+    void deleteByID(Long id);
 }

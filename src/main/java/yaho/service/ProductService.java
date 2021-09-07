@@ -26,4 +26,14 @@ public class ProductService {
     public Product findByName(String productName) {
         return productRepository.findByName(productName);
     }
+
+    public List<String> findByMatch(String productName) {
+        if (productName == "") return null;
+        return productRepository.findByMatch(productName);
+    }
+
+    @Transactional
+    public void deleteById(Long id){
+        productRepository.deleteByID(id);
+    };
 }

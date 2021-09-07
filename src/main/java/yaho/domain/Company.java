@@ -11,12 +11,15 @@ public class Company {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="company_id")
     private Long id;
+
     private String name;
+
+    @Column(unique = true)
     private String businessNumber;
+
     private String telNumber;
+
     private String email;
-//    @OneToOne(mappedBy = "company", fetch = FetchType.LAZY)
-//    private Order order;
 
     public Company() {}
 
