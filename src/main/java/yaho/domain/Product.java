@@ -3,10 +3,11 @@ package yaho.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
-@Getter @Setter @Entity
+@Getter @Setter @Entity @ToString
 public class Product {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="product_id")

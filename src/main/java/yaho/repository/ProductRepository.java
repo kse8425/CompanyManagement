@@ -1,19 +1,13 @@
 package yaho.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import yaho.domain.Product;
 
-import java.util.List;
+public interface ProductRepository extends JpaRepository<Product,Long> {
 
-public interface ProductRepository {
-    public Long save(Product product);
+    Product findById(long id);
 
-    public Product findByName(String productName);
+    Product findByName(String name);
 
-    public Product findById(Long id);
-
-    public List<Product> findAll();
-
-    List<String> findByMatch(String productName);
-
-    void deleteByID(Long id);
+    Product findByNameLike(String name);
 }

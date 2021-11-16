@@ -1,19 +1,15 @@
 package yaho.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import yaho.domain.Company;
 
 import java.util.List;
 
-public interface CompanyRepository {
-    public Long save(Company company);
 
-    public Company findByID(Long id);
+public interface CompanyRepository extends JpaRepository<Company,Long> {
 
-    public Company findByName(String companyName);
+    Company findByName(String name);
 
-    public List<Company> findAll();
-
-    public List<String> findByMatch(String companyName);
-
-    public void deleteByID(Long id);
+    Company findByNameLike(String name);
 }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"/>
+<body>
+<div class="wrapper">
+    <!-- nav bar -->
+    <nav th:replace="fragments/navbar :: navbar"/>
+    <main>
+        <!-- header -->
+        <header></header>
+
+        <!-- contents -->
+        <div class="main__title"><h4>Company</h4></div>
+        <article class="form__card-body">
+            <section>
+                <form action="#" class="add_form" method="post" th:action="@{/companies}"
+                      th:object="${companyForm}">
+                    <input placeholder="Company Name" th:field="*{companyName}" type="text"/>
+                    <input placeholder="Phone" th:field="*{telNumber}" type="text"/>
+                    <input placeholder="E-mail" th:field="*{email}" type="email"/>
+                    <input placeholder="Location" th:field="*{location}" type="text"/>
+                    <button type="submit">Add Company</button>
+                </form>
+            </section>
+            <section>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="width: 20%">회사명</th>
+                        <th scope="col" style="width: 20%">전화번호</th>
+                        <th scope="col" style="width: 20%">E-mail</th>
+                        <th scope="col" style="width: 20%">지역</th>
+                        <th scope="col" style="width: 20%">action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="company : ${companyList}" th:id="${company.id}">
+                        <td th:text="${company.name}">회사명</td>
+                        <td th:text="${company.telNumber}">전화번호</td>
+                        <td th:text="${company.email}">이메일</td>
+                        <td th:text="${company.location}">지역</td>
+                        <td>
+                            <button onclick="updateRow(this)"><i class="far fa-edit"></i>
+                            </button>
+                            <button onclick="deleteRow(this)"><i class="far fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+        </article>
+        <!-- footer -->
+        <footer></footer>
+
+    </main>
+</div>
+<script>
+    function updateRow(btn) {
+        const tr = btn.parentNode.parentNode;
+        const form = document.querySelector(".add_form");
+        tr.classList.add("editing");
+        btn.outerHTML = `<button onclick="updateOKRow(this)"><i style="color: var(--point-color-red)" class="far fa-check-square"></i></button>`;
+
+        for (let i = 0; i < tr.children.length - 1; i++) {
+            const input = document.createElement("input");
+            input.placeholder = form.children[i].placeholder;
+            input.value = tr.children[i].innerText;
+            tr.children[i].innerText = "";
+            tr.children[i].appendChild(input);
+        }
+    }
+
+    async function updateOKRow(btn) {
+        const tr = btn.parentNode.parentNode;
+        const id = tr.id;
+        let inputValue = [];
+        for (let i = 0; i < tr.children.length - 1; i++) {
+            inputValue[i] = tr.children[i].children[0].value;
+        }
+        const json = {
+            "companyName": inputValue[0],
+            "telNumber": inputValue[1],
+            "email": inputValue[2],
+            "location": inputValue[3],
+        };
+        const res = await fetch(`/company/${id}`, {
+            method: 'put',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(json)
+        })
+        if (res.ok) {
+            tr.classList.remove("editing");
+            btn.outerHTML = `<button onclick="updateRow(this)"><i class="far fa-edit"></i></button>`;
+            for (let i = 0; i < tr.children.length - 1; i++) {
+                tr.children[i].innerHTML = inputValue[i];
+            }
+        }
+    }
+
+    async function deleteRow(btn) {
+        const tr = btn.parentNode.parentNode
+        const id = tr.id;
+        const res = await fetch(`/company/${id}`, {method: "delete"})
+        if (res.ok) tr.remove();
+    }
+</script>
+</body>
+</html>

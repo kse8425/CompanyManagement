@@ -2,16 +2,85 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head"/>
 <body>
-<div th:replace="fragments/header :: header"></div>
-<div class="container-fluid">
-    <div class="row">
-        <div th:replace="fragments/navbar :: navbar"></div>
-        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-3">
-            <div th:replace="order/list :: order-list"></div>
-        </main>
-    </div>
+<div class="wrapper">
+    <!-- nav bar -->
+    <nav th:replace="fragments/navbar :: navbar"/>
+
+    <main>
+        <!-- header -->
+        <header></header>
+
+        <!-- contents -->
+        <div class="main__title"><h4>Dashboard</h4></div>
+        <article>
+            <section class="dashboard__column__card">
+                <!-- 1단 -->
+                <div class="card__frame">
+                    <div class="card__body">
+                        <h5>이번달 매출</h5>
+                        <h3 id="thisMonthRevenue" th:text="${thisMonthRevenue.content}">0</h3>
+                        <p>
+                            <span class="percent_plus" id="thisMonthPercent"
+                                  th:class="${thisMonthRevenue.percent}>0 ? 'percent_plus' : 'percent_minus'"
+                                  th:text="${thisMonthRevenue.percent}+'%'">
+                            </span>
+                            <span class="text-nowrap">Since Last Month</span>
+                        </p>
+                    </div>
+                    <div class="card__body">
+                        <h5>이번주 매출</h5>
+                        <h3 id="thisWeekRevenue" th:text="${thisWeekRevenue.content}">0</h3>
+                        <p>
+                            <span class="percent_plus"
+                                  id="thisWeekPercent"
+                                  th:class="${thisWeekRevenue.percent}>0 ? 'percent_plus' : 'percent_minus'"
+                                  th:text="${thisWeekRevenue.percent}+'%'"></span>
+                            <span class="text-nowrap">Since Last Week</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2단 -->
+                <div class="card__frame">
+                    <div class="card__body">
+                        <h5>최고 판매 제품</h5>
+                        <h3 id="bestProduct" th:text="${bestProduct.content}"></h3>
+                        <p>
+                            <span class="percent_plus" id="bestProductPercent"
+                                  th:text="${bestProduct.percent}+'%'"></span>
+                            <span class="text-nowrap">In Total Price</span>
+                        </p>
+                    </div>
+                    <div class="card__body">
+                        <h5>최고 매출 업체</h5>
+                        <h3 id="bestCompany" th:text="${bestCompany.content}"></h3>
+                        <p>
+                            <span class="percent_plus" id="bestCompanyPercent"
+                                  th:text="${bestCompany.percent}+'%'"></span>
+                            <span class="text-nowrap">In Total Price</span>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard__column__chart">
+                    <canvas id="monthlyRevenueChart"></canvas>
+            </section>
+        </article>
+        <article>
+            <section class="dashboard__column__doughnut_chart">
+                <canvas id="salesPercentChart"></canvas>
+            </section>
+        </article>
+        <!-- footer -->
+        <footer></footer>
+    </main>
 </div>
 
-<div th:replace="fragments/footer :: footer"></div>
+<script crossorigin="anonymous"
+        integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ=="
+        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/chart.js"></script>
 </body>
 </html>

@@ -1,0 +1,53 @@
+table {
+    width: 100%;
+    background-color: white;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead tr {
+    height: 45px;
+    text-align: left;
+}
+
+tbody tr {
+    height: 60px;
+}
+thead th:first-child{
+    padding-left: 10px;
+}
+tbody tr td:first-child {
+    padding-left: 10px;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color: var(--table--odd-color);
+}
+
+tbody button {
+    background-color: inherit;
+    cursor: pointer;
+    padding: 1px 3px;
+    font-size: 14px;
+}
+
+tbody .fa-times-circle {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+tr input {
+    margin: 0px 5px;
+    padding: 18px 0px;
+    background-color: inherit;
+    border-radius: 5px;
+    color: inherit;
+    display: inline;
+}
+
+tr input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.editing {
+    box-shadow: 3px 3px 3px;
+}

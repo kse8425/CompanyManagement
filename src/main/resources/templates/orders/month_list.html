@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"/>
+<body>
+<div class="wrapper">
+    <!-- nav bar -->
+    <nav th:replace="fragments/navbar :: navbar"/>
+    <main>
+        <!-- header -->
+        <header></header>
+
+        <!-- contents -->
+        <div class="main__title"><h4>Order</h4></div>
+        <article class="form__card-body">
+            <section>
+                <span th:text="${monthPrice}"></span>
+<!--                <form action="#" class="add_form" method="post" th:action="@{/orders}"-->
+<!--                      th:object="${orderForm}">-->
+<!--                    <input placeholder="Company Name" th:field="*{companyName}" type="text"/>-->
+<!--                    <input placeholder="product Name" th:field="*{productName}" type="text"/>-->
+<!--                    <input placeholder="quantity" th:field="*{quantity}" type="text"/>-->
+<!--                    <button type="submit">Add Order</button>-->
+<!--                </form>-->
+            </section>
+            <section>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th style="width: 15%" scope="col">날 짜</th>
+                        <th style="width: 15%" scope="col">회사명</th>
+                        <th style="width: 15%" scope="col">제 품</th>
+                        <th style="width: 15%" scope="col">수 량</th>
+                        <th style="width: 15%" scope="col">가 격</th>
+                        <th style="width: 15%" scope="col">action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order : ${orderList}">
+                        <td th:text="${order.date}"></td>
+                        <td th:text="${order.company.name}"></td>
+                        <td th:text="${order.product.getName()}"></td>
+                        <td th:text="${order.quantity}"></td>
+                        <td th:text="${order.price}"></td>
+                        <td>
+                            <button onclick="delRow(this)" th:id="${order.id}"><i class="far fa-times-circle"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </section>
+        </article>
+        <!-- footer -->
+        <footer></footer>
+
+    </main>
+</div>
+<script>
+    async function delRow(btn) {
+        const id = btn.id;
+        let res = await fetch(`/order/${id}`, {method: "delete"})
+        if(res.ok) btn.parentNode.parentNode.remove();
+    }
+</script>
+</body>
+</html>

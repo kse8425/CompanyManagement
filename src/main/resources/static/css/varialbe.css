@@ -1,0 +1,12 @@
+:root {
+  --main-bg-color: #f9fafd;
+  --body-text-color: #6c757d;
+  --point-color: #727cf5;
+  --nav-bg-color: #313a46;
+  --nav-text-color: #8391a2;
+  --card-bg-color: white;
+  --table--odd-color: #f1f3fa;
+  --point-color-red: #fa5c7c;
+  --point-color-green: #0acf97;
+  --nav-width: 240px;
+}
