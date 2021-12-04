@@ -7,6 +7,8 @@ import yaho.domain.Order;
 import yaho.form.OrderForm;
 import yaho.repository.OrderRepository;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -14,6 +16,8 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final CompanyService companyService;
+    private final ProductService productService;
 
     @Transactional
     public void create(Order order) {
@@ -31,12 +35,24 @@ public class OrderService {
     @Transactional
     public void update(Long id, OrderForm orderForm) {
         Order order = orderRepository.findById(id).get();
-
+        order.setDate(LocalDate.parse(orderForm.getDate()));
+        order.setCompany(companyService.findByName(orderForm.getCompanyName()));
+        order.setProduct(productService.findByName(orderForm.getProductName()));
+        order.setQuantity(orderForm.getQuantity());
         orderRepository.save(order);
     }
 
     @Transactional
     public void delete(Long id) {
         orderRepository.deleteById(id);
+    }
+
+    public Order buildOrder(OrderForm orderForm) {
+        Order order = new Order();
+        order.setDate(LocalDate.parse(orderForm.getDate(), DateTimeFormatter.ISO_DATE));
+        order.setCompany(companyService.findByName(orderForm.getCompanyName()));
+        order.setProduct(productService.findByName(orderForm.getProductName()));
+        order.setQuantity(orderForm.getQuantity());
+        return order;
     }
 }

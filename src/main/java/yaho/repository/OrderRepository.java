@@ -10,8 +10,6 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order,Long> {
 
-    Order findById(long id);
-
     List<Order> findAllByOrderByDateDesc();
 
     List<Order> findByDateBetween(LocalDate start,LocalDate end);

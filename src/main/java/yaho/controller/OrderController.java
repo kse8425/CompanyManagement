@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import yaho.domain.Company;
 import yaho.domain.Order;
-import yaho.domain.Product;
 import yaho.form.OrderForm;
 import yaho.service.CompanyService;
 import yaho.service.OrderService;
@@ -33,18 +31,17 @@ public class OrderController {
 
     @PostMapping("orders")
     String ordersCreate(OrderForm orderForm) {
-        Company company = companyService.findByName(orderForm.getCompanyName());
-        Product product = productService.findByName(orderForm.getProductName());
-        Order order = new Order(company,product);
-        order.setQuantity(orderForm.getQuantity());
+        Order order = orderService.buildOrder(orderForm);
         orderService.create(order);
         return "redirect:/orders";
     }
 
     @ResponseBody
-    @PutMapping
-    List<Order> orderUpdate(@PathVariable Long orderId, OrderForm orderForm) {
-        return null;
+    @PutMapping("/order/{orderId}")
+    List<Order> orderUpdate(@PathVariable Long orderId, @RequestBody OrderForm orderForm) {
+        orderService.update(orderId, orderForm);
+        List<Order> orderList = orderService.readAll();
+        return orderList;
     }
 
     @ResponseBody

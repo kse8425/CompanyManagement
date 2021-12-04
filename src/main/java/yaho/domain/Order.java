@@ -1,7 +1,6 @@
 package yaho.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +9,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 @Table(name = "orders")
+@NoArgsConstructor
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +28,6 @@ public class Order {
 
     private int quantity = 1;
     private int price;
-
-    public Order() {
-    }
 
     public Order(LocalDate date, Company company, Product product) {
         this.date = date;

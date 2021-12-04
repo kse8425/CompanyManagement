@@ -26,7 +26,7 @@ public class CompanyController {
 
     @PostMapping("/companies")
     String companiesCreate(CompanyForm companyForm){
-        Company newCompany = companyService.createCompany(companyForm);
+        Company newCompany = companyService.buildCompany(companyForm);
         companyService.create(newCompany);
         return "redirect:/companies";
     }

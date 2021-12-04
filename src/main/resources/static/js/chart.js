@@ -50,34 +50,4 @@ async function monthlyRevenueChartFn() {
     }
     const myChart = new Chart(ctx, config);
 };
-
-async function salesPercentChartFn() {
-    const res = await fetch(`/salesPercent`, {method: "get"});
-    const salesPercent = await res.json();
-
-    const ctx = document.getElementById("salesPercentChart").getContext("2d");
-    const data = {
-        labels: salesPercent['labels'],
-        datasets: [
-            {
-                data: salesPercent['dataset'],
-                backgroundColor: Object.values(Utils.CHART_COLORS),
-            },
-        ],
-    }
-    const config = {
-        type: "doughnut",
-        data: data,
-        options: {
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'top',
-                }
-            }
-        },
-    }
-    const myChart = new Chart(ctx, config);
-}
 monthlyRevenueChartFn();
-salesPercentChartFn();

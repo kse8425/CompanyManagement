@@ -51,7 +51,7 @@ public class CompanyService {
         return companyRepository.findByNameLike(companyName);
     }
 
-    public Company createCompany(CompanyForm companyForm) {
+    public Company buildCompany(CompanyForm companyForm) {
         Company company = Company.builder()
                 .name(companyForm.getCompanyName())
                 .telNumber(companyForm.getTelNumber())
