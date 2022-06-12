@@ -1,18 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
 @import "varialbe.css";
-@import "form.css";
-@import "navbar.css";
-@import "dashboard.css";
-@import "table.css";
+
 
 * {
-  font-family: "Nunito Sans", sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--body-text-color);
 }
 
@@ -74,4 +71,238 @@ header {
 footer {
   position: absolute;
   bottom: 0;
+}
+
+/*==========================
+          Navbar CSS
+==========================*/
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  font-size: 25px;
+  color: white;
+  height: 70px;
+  margin-bottom: 50px;
+}
+
+.logo i {
+  margin-right: 12px;
+  color: var(--point-color);
+}
+
+.navbar {
+  width: var(--nav-width);
+  position: fixed;
+  height: 100%;
+  background-color: var(--nav-bg-color);
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  color: var(--nav-text-color);
+}
+
+.navbar .menu-wrap i {
+  margin-right: 20px;
+}
+
+.navbar .menu-wrap li {
+  padding: 8px 30px;
+}
+
+.navbar .menu-wrap li:hover {
+  color: white;
+}
+
+
+
+/*==========================
+          Form CSS
+==========================*/
+
+.form__card-body {
+  display: flex;
+  flex-direction: column;
+}
+.add_form {
+  display: flex;
+  margin: 0px;
+}
+.add_form input,
+.add_form button {
+  /* flex: 1 1 0; */
+  margin: 0px 10px;
+  padding: 18px;
+}
+.add_form input {
+  background-color: #f1f3fa;
+  border-radius: 5px;
+}
+
+.add_form input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.add_form > input {
+  margin-left: 0px;
+}
+.add_form button {
+  background-color: var(--point-color-red);
+  color: white;
+  border-radius: 5px;
+  margin-left: 15px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.form-wrapper{
+  padding: 5px;
+  background-color: white;
+}
+.table-wrapper{
+  margin-top: 20px;
+  background-color: white;
+}
+.label-text {
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  margin-right: 5px;
+  width: 70px;
+}
+.label-text:first-child {
+  margin-left: 10px;
+}
+
+/*==========================
+         Table CSS
+==========================*/
+table {
+  width: 100%;
+  /*background-color: white;*/
+  border-collapse: collapse;
+}
+
+thead tr {
+  height: 45px;
+  text-align: left;
+}
+
+tbody tr {
+  height: 60px;
+}
+thead th:first-child{
+  padding-left: 10px;
+}
+tbody tr td:first-child {
+  padding-left: 10px;
+}
+
+tbody tr:nth-of-type(odd) {
+  background-color: var(--table--odd-color);
+}
+
+
+tbody button {
+  background-color: inherit;
+  cursor: pointer;
+  padding: 1px 3px;
+  font-size: 14px;
+}
+
+tbody .fa-times-circle {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+tr input {
+  margin: 0px 5px;
+  padding: 18px 0px;
+  background-color: inherit;
+  border-radius: 5px;
+  color: inherit;
+  display: inline;
+}
+
+tr input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.editing {
+  z-index: 1;
+  box-shadow: 3px 3px 3px;
+}
+
+/*==========================
+       Dashboard CSS
+==========================*/
+
+article {
+  display: flex;
+}
+
+article section.dashboard__column__card {
+  display: flex;
+  flex-direction: column;
+  height: 360px;
+  flex: 1 1 0;
+}
+
+article section.dashboard__column__chart {
+  height: 360px;
+  flex: 1 1 0;
+}
+
+.card__frame {
+  display: flex;
+  justify-content: space-between;
+  height: 180px;
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  background-color: white;
+  padding: 1.5rem;
+  margin: 12px;
+  border-radius: 0.3rem;
+}
+
+.card__body h5 {
+  margin: 0px;
+  opacity: 0.5;
+}
+
+.card__body h3 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  font-weight: 700;
+}
+
+.card__body .text-nowrap {
+  white-space: nowrap;
+}
+.card__body p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.percent_plus {
+  font-weight: bold;
+  color: var(--point-color-green);
+}
+
+.percent_minus {
+  font-weight: bold;
+  color: var(--point-color-red);
+}
+
+.card__chart {
+  height: 360px;
+}
+
+#monthlyRevenueChart {
+  position: relative;
 }

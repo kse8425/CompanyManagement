@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static java.lang.Math.abs;
+
 @Service
 @RequiredArgsConstructor
 public class DashBoardService {
@@ -113,7 +115,7 @@ public class DashBoardService {
         int lastRevenue = sumRevenueInList(lastOrderList);
         if (lastRevenue == 0) lastRevenue = 1;
         double percent = ((thisRevenue - lastRevenue) / (double) lastRevenue) * 100.0;
-        String sRevenue = new DecimalFormat("###,###").format(thisRevenue);
+        String sRevenue = new DecimalFormat("###,###").format(thisRevenue) + '원';
         String sPercent = String.format("%.2f", percent);
         return new DashboardCardForm(sRevenue, sPercent);
     }
@@ -163,10 +165,6 @@ public class DashBoardService {
         ChartForm salesPercent = new ChartForm();
         List<String> products = new ArrayList<>();
         List<Integer> percent = new ArrayList<>();
-        List<Order> orderList;
-
-
-
         salesPercent.setLabels(products);
         salesPercent.setDataset(percent);
         return salesPercent;

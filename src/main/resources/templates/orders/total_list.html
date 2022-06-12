@@ -10,20 +10,24 @@
         <header></header>
 
         <!-- contents -->
-        <div class="main__title"><h4>Order</h4></div>
+        <div class="main__title"><h4>주 문</h4></div>
         <article class="form__card-body">
-            <section>
+            <section class="form-wrapper">
                 <form action="#" class="add_form" method="post" th:action="@{/orders}"
                       th:object="${orderForm}">
+                    <label class="label-text">날 짜 : </label>
                     <input id="input_date" max="2999-12-31" min="2000-01-01" placeholder="" required
                            th:field="*{date}" type="date"/>
-                    <input placeholder="Company Name" th:field="*{companyName}" type="text"/>
-                    <input placeholder="Product Name" th:field="*{productName}" type="text"/>
-                    <input placeholder="Quantity" th:field="*{quantity}" type="text"/>
-                    <button type="submit">Add Order</button>
+                    <label class="label-text">회사명 : </label>
+                    <input placeholder="회사명을 입력하세요" th:field="*{companyName}" type="text"/>
+                    <label class="label-text">제품명 : </label>
+                    <input placeholder="제품명을 입력하세요" th:field="*{productName}" type="text"/>
+                    <label class="label-text">수 량 : </label>
+                    <input placeholder="수량을 입력하세요" th:field="*{quantity}" type="text"/>
+                    <button type="submit">주문 추가</button>
                 </form>
             </section>
-            <section>
+            <section class="table-wrapper">
                 <table class="table">
                     <thead>
                     <tr>
@@ -32,7 +36,7 @@
                         <th scope="col" style="width: 15%">제 품</th>
                         <th scope="col" style="width: 15%">수 량</th>
                         <th scope="col" style="width: 15%">가 격</th>
-                        <th scope="col" style="width: 15%">action</th>
+                        <th scope="col" style="width: 15%">수정/삭제</th>
                     </tr>
                     </thead>
                     <tbody>

@@ -10,23 +10,25 @@
         <header></header>
 
         <!-- contents -->
-        <div class="main__title"><h4>Product</h4></div>
+        <div class="main__title"><h4>제 품</h4></div>
         <article class="form__card-body">
-            <section>
+            <section class="form-wrapper">
                 <form action="#" class="add_form" method="post" th:action="@{/products}"
                       th:object="${productForm}">
-                    <input placeholder="Name" th:field="*{name}" type="text"/>
-                    <input placeholder="Price" th:field="*{price}" type="text"/>
-                    <button type="submit">Add Product</button>
+                    <label class="label-text">제품명 : </label>
+                    <input placeholder="제품명을 입력하세요" th:field="*{name}" type="text"/>
+                    <label class="label-text">가 격 : </label>
+                    <input placeholder="가격을 입력하세요" th:field="*{price}" type="text"/>
+                    <button type="submit">제품 추가</button>
                 </form>
             </section>
-            <section>
+            <section class="table-wrapper">
                 <table class="table">
                     <thead>
                     <tr>
                         <th style="width: 20%" scope="col">제품명</th>
                         <th style="width: 20%" scope="col">가 격</th>
-                        <th style="width: 10%" scope="col">action</th>
+                        <th style="width: 10%" scope="col">수정/삭제</th>
                     </tr>
                     </thead>
                     <tbody>

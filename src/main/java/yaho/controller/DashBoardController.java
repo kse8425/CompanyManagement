@@ -30,12 +30,6 @@ public class DashBoardController {
     }
 
     @ResponseBody
-    @GetMapping("/salesPercent")
-    ChartForm salesPercent(){
-        return dashBoardService.makeSalesPercentList();
-    }
-
-    @ResponseBody
     @GetMapping("/thisMonthRevenue")
     DashboardCardForm thisMonthRevenue(){
         return dashBoardService.getThisMonthRevenue();
@@ -58,5 +52,12 @@ public class DashBoardController {
     DashboardCardForm bestCompany(){
         return dashBoardService.getBestCompany();
     }
+
+
+//    @ResponseBody
+//    @GetMapping("/salesPercent")
+//    ChartForm salesPercent(){
+//        return dashBoardService.makeSalesPercentList();
+//    }
 
 }
